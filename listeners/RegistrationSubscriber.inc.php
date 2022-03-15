@@ -33,7 +33,7 @@ class RegistrationSubscriber
         }
 
         $mailable = new RegistrationCompletedContext($event->context); // enables usage of context template variables
-        $mailable->setRecipients([$event->recipient]); // sets recipients and enables usage of recipient-related variables
+        $mailable->recipients([$event->recipient]); // sets recipients and enables usage of recipient-related variables
         $mailable->from($event->context->getContactEmail(), $event->context->getContactName());
 
         // Assign additional template variable

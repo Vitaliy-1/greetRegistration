@@ -47,6 +47,7 @@ class GreetRegistrationPlugin extends GenericPlugin
         if (parent::register($category, $path, $mainContextId)) {
             if ($this->getEnabled($mainContextId)) {
                 $this->registerSubscriber();
+                HookRegistry::register('Mailer::Mailables', [$this, 'registerMailable']);
             }
             return true;
         }
@@ -60,5 +61,9 @@ class GreetRegistrationPlugin extends GenericPlugin
      */
     protected function registerSubscriber() {
         Event::subscribe(RegistrationSubscriber::class);
+    }
+
+    public function registerMailable($hookName, &$params) {
+        $params[0][] = RegistrationSubscriber::class;
     }
 }

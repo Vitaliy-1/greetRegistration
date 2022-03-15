@@ -13,10 +13,11 @@
  */
 
 use PKP\context\Context;
+use PKP\mail\traits\Recipient;
 
 class RegistrationCompletedContext extends \PKP\mail\Mailable
 {
-    use \PKP\mail\mailables\Recipient;
+    use Recipient;
 
     public function __construct(Context $context)
     {
